@@ -9,11 +9,9 @@ PKG_NAME:=boinc-wrapper
 PKG_VERSION:=26018
 PKG_RELEASE:=1
 
-PKG_SOURCE_DATE:=2022-09-07
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/BOINC/boinc/tar.gz/refs/tags/wrapper/$(PKG_VERSION)?
 PKG_HASH:=a93ae0a9e640a893e78f523c6d93f31b1d5812092f85af4e9ce964846373f55d
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 PKG_MAINTAINER:=Vitalii Koshura <lestat.de.lionkur@gmail.com>
 PKG_LICENSE:=GPL-3.0-or-later
