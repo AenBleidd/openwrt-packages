@@ -1,3 +1,3 @@
 #!/bin/sh
 
-wrapper
+wrapper | grep "$2"
