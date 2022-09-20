@@ -52,20 +52,13 @@ CONFIGURE_ARGS += \
 	--with-boinc-platform=$(REAL_GNU_TARGET_NAME) \
 	--with-boinc-alt-platform=$(ARCH)-$(BOARD)-$(DEVICE_TYPE)-openwrt-$(TARGET_SUFFIX)
 
+TARGET_CFLAGS += -Wno-format -Wno-format-security
+TARGET_CPPFLAGS += -Wno-format -Wno-format-security
+
 define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		CC="$(TARGET_CC)" \
-		CXX="$(TARGET_CXX)" \
-		CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -Wno-format -Wno-format-security " \
-		CPPFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -Wno-format -Wno-format-security " \
-		LDFLAGS="$(TARGET_LDFLAGS) "
-	$(MAKE) -C $(PKG_BUILD_DIR)/samples/wrapper \
-		CC="$(TARGET_CC)" \
-		CXX="$(TARGET_CXX)" \
-		CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -Wno-format -Wno-format-security " \
-		CPPFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS) -Wno-format -Wno-format-security " \
-		LDFLAGS="$(TARGET_LDFLAGS) " \
-		all
+	$(MAKE) -C $(PKG_BUILD_DIR)
+	$(MAKE) -C $(PKG_BUILD_DIR)/samples/wrapper all
+	$(call Build/Compile/Default)
 endef
 
 define Package/boinc-wrapper/install
