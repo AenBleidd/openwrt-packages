@@ -56,12 +56,7 @@ TARGET_CFLAGS += -Wno-format -Wno-format-security
 TARGET_CPPFLAGS += -Wno-format -Wno-format-security
 
 define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		CC="$(TARGET_CC)" \
-		CXX="$(TARGET_CXX)" \
-		CFLAGS="$(TARGET_CFLAGS)" \
-		CPPFLAGS="$(TARGET_CPPFLAGS)" \
-		LDFLAGS="$(TARGET_LDFLAGS) "
+	$(call Build/Compile/Default)
 	$(MAKE) -C $(PKG_BUILD_DIR)/samples/wrapper \
 		CC="$(TARGET_CC)" \
 		CXX="$(TARGET_CXX)" \
@@ -69,7 +64,6 @@ define Build/Compile
 		CPPFLAGS="$(TARGET_CPPFLAGS)" \
 		LDFLAGS="$(TARGET_LDFLAGS) " \
 		all
-	$(call Build/Compile/Default)
 endef
 
 define Package/boinc-wrapper/install
