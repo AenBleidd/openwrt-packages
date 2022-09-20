@@ -56,8 +56,19 @@ TARGET_CFLAGS += -Wno-format -Wno-format-security
 TARGET_CPPFLAGS += -Wno-format -Wno-format-security
 
 define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR)
-	$(MAKE) -C $(PKG_BUILD_DIR)/samples/wrapper all
+	$(MAKE) -C $(PKG_BUILD_DIR) \
+		CC="$(TARGET_CC)" \
+		CXX="$(TARGET_CXX)" \
+		CFLAGS="$(TARGET_CFLAGS)" \
+		CPPFLAGS="$(TARGET_CPPFLAGS)" \
+		LDFLAGS="$(TARGET_LDFLAGS) "
+	$(MAKE) -C $(PKG_BUILD_DIR)/samples/wrapper \
+		CC="$(TARGET_CC)" \
+		CXX="$(TARGET_CXX)" \
+		CFLAGS="$(TARGET_CFLAGS)" \
+		CPPFLAGS="$(TARGET_CPPFLAGS)" \
+		LDFLAGS="$(TARGET_LDFLAGS) " \
+		all
 	$(call Build/Compile/Default)
 endef
 
